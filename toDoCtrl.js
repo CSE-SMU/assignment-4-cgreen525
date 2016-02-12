@@ -6,13 +6,15 @@ angular.module('todoApp', [])
     $scope.reverse = false;
 
     $scope.order = function(predicate) {
-    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-    $scope.predicate = predicate;
+      $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+      $scope.predicate = predicate;
     };
 
     todoList.addTodo = function() {
       todoList.todos.push({name:todoList.todoName, date:todoList.todoDate, description:todoList.todoDescription, done:false});
-      todoList.todoText = '';
+      todoList.todoName = '';
+      todoList.todoDescription = '';
+      todoList.todoDate = null;
     };
 
     todoList.remaining = function() {
@@ -30,4 +32,5 @@ angular.module('todoApp', [])
         if (!todo.done) todoList.todos.push(todo);
       });
     };
+
   });

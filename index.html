@@ -40,16 +40,16 @@
             [ <a href="" ng-click="todoList.archive()">Clear Completed</a> ]
           </span>
         </div>
-        <div class="container-fluid m-t-1">
+        <div class="container-fluid m-y-1">
           <strong><h1>Reminders</h1></strong>
         </div>
         <div class="container-fluid m-b-1">
           <div class="pull-xs-left">
-            <button class="btn-info form-control active p-x-2" ng-click="order('name')">Title</button>
+            <button class="btn-info form-control active p-x-3" ng-click="order('name')">Title</button>
             <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
           </div>
           <div class="pull-xs-right">
-            <button class="btn-info form-control active p-x-2" ng-click="order('date')">Date</button>
+            <button class="btn-info form-control active p-x-3" ng-click="order('date')">Due Date</button>
             <span class="sortorder" ng-show="predicate === 'date'" ng-class="{reverse:reverse}"></span>
           </div>
         </div>
@@ -57,15 +57,16 @@
           <li class="list-group-item disabled">
           </li>
           <li ng-repeat="todo in todoList.todos | filter: (!disableFilter || '') && {name: search} | orderBy:predicate:reverse"
-            class="list-group-item p-y-0 p-x-1">
+            class="list-group-item p-y-0 p-x-1" ng-class="{disabled:todo.done}">
 
             <span class="done-{{todo.done}} m-l-1">
-                <h4 class="list-group-item-heading">
+                <h5 class="list-group-item-heading p-t-0">
                   <input type="checkbox" ng-model="todo.done">
-                  <strong>{{todo.name}}</strong>
-                  <div class="pull-xs-right"> {{todo.date | date:"MM/dd/yyyy"}} </div>
-                </h4>
-                <p class="list-group-item-text m-l-2"> ({{todo.description}}) </p>
+                  <strong>{{todo.name}}</strong> <div class="pull-xs-right"> {{todo.date | date:"MM/dd/yyyy"}} </div>
+                </h5>
+                <p class="list-group-item-text m-l-2">
+                  ({{todo.description}})
+                </p>
             </span>
           </li>
         </ul>
