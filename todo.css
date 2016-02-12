@@ -1,0 +1,22 @@
+
+html {
+  background:url(http://www.download-free-wallpaper.com/img12/csocoimihdfizbzygsqk.jpg);
+}
+
+
+.app_card {
+  background-color: rgba(0,0,0,0);
+}
+
+.reminders_card {
+  background-color:#F8F8F8;
+}
+
+.create_new_card {
+  background-color:#F8F8F8;
+}
+
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
