@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="todo.css">
   </head>
-  <body class="app_card container-fluid m-t-2 m-l-3"  ng-controller="TodoListController as todoList">
+  <body class="app_card container-fluid m-t-3 m-l-3"  ng-controller="TodoListController as todoList">
     <div class="row">
       <div class="create_new_card col-xs-5 m-a-1 p-a-1">
         <form ng-submit="todoList.addTodo()" class="m-b-1">
@@ -20,11 +20,11 @@
               placeholder="Title" required class="form-control m-l-1">
           </br>
             <input type="text" ng-model="todoList.todoDescription" maxlength="50"
-              placeholder="Description" required class="form-control m-l-1">
+              placeholder="Description (50 characters)" required class="form-control m-l-1">
             </textarea>
           </br>
             <input type="date" ng-model="todoList.todoDate" required class="form-control m-l-1">
-            <input class="btn-info form-control add_button m-l-1 m-t-1" type="submit" value="Add">
+            <input class="btn-info form-control add_button m-l-1 m-y-1" type="submit" value="Add">
           </div>
         </form>
       </div>
@@ -35,25 +35,23 @@
         </div>
       </br>
         <div class="container-fluid m-x-1 p-x-0">
-          <span class="pull-xs-left">{{todoList.remaining()}} Remaining</span>
+          <span class="pull-xs-left m-l-2"><strong>{{todoList.remaining()}} Remaining</strong></span>
           <span class="pull-xs-right">
             [ <a href="" ng-click="todoList.archive()">Clear Completed</a> ]
           </span>
         </div>
-        <div class="container-fluid m-y-1">
-          <strong><h1>Reminders</h1></strong>
-        </div>
-        <div class="container-fluid m-b-1">
-          <div class="pull-xs-left">
-            <button class="btn-info form-control active p-x-3" ng-click="order('name')">Title</button>
-            <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
-          </div>
-          <div class="pull-xs-right">
-            <button class="btn-info form-control active p-x-3" ng-click="order('date')">Due Date</button>
+        <div class="container-fluid m-t-2">
+          <strong><h1 class="pull-xs-left">Reminders</h1></strong>
+          <div class="pull-xs-right m-l-1">
+            <button class="btn-info form-control active p-x-1" ng-click="order('date')">Sort by Date</button>
             <span class="sortorder" ng-show="predicate === 'date'" ng-class="{reverse:reverse}"></span>
           </div>
+          <div class="pull-xs-right">
+            <button class="btn-info form-control active p-x-1" ng-click="order('name')">Sort by Title</button>
+            <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
+          </div>
         </div>
-        <ul class="container-fluid list-group m-l-1 m-b-1">
+        <ul class="container-fluid list-group m-l-1 m-b-2">
           <li class="list-group-item disabled">
           </li>
           <li ng-repeat="todo in todoList.todos | filter: (!disableFilter || '') && {name: search} | orderBy:predicate:reverse"
@@ -64,7 +62,7 @@
                   <input type="checkbox" ng-model="todo.done">
                   <strong>{{todo.name}}</strong> <div class="pull-xs-right"> {{todo.date | date:"MM/dd/yyyy"}} </div>
                 </h5>
-                <p class="list-group-item-text m-l-2">
+                <p class="list-group-item-text m-l-2 p-b-0">
                   ({{todo.description}})
                 </p>
             </span>
